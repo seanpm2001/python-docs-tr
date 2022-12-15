@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Python Modüllerini Dağıtma &#8212; Python 3.11.0 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.0 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="Installing Python Modules" href="../installing/index.html" />
+    <link rel="prev" title="API and ABI Versioning" href="../c-api/apiabiversion.html" />
+    <link rel="canonical" href="https://docs.python.org/3/distributing/index.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <label for="menuToggler" class="toggler__label">
+        <span></span>
+    </label>
+    <nav class="nav-content" role="navigation">
+         <a href="https://www.python.org/" class="nav-logo">
+             <img src="../_static/py.svg" alt="Logo"/>
+         </a>
+        <div class="version_switcher_placeholder"></div>
+        <form role="search" class="search" action="../search.html" method="get">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                <path fill-rule="nonzero"
+                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
+            </svg>
+            <input type="text" name="q" aria-label="Hızlı Arama"/>
+            <input type="submit" value="Git"/>
+        </form>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Modüllerini Dağıtma</a><ul>
+<li><a class="reference internal" href="#key-terms">Anahtar terimler</a></li>
+<li><a class="reference internal" href="#open-source-licensing-and-collaboration">Açık kaynak lisanslama ve işbirliği</a></li>
+<li><a class="reference internal" href="#installing-the-tools">Araçları yükleme</a></li>
+<li><a class="reference internal" href="#reading-the-python-packaging-user-guide">Python Paketleme Kullanım Kılavuzunu Okumak</a></li>
+<li><a class="reference internal" href="#how-do-i">Nasıl yaparım…?</a><ul>
+<li><a class="reference internal" href="#choose-a-name-for-my-project">… projem için bir isim seçer misin?</a></li>
+<li><a class="reference internal" href="#create-and-distribute-binary-extensions">… ikili uzantılar oluşturup dağıtmak?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../c-api/apiabiversion.html"
+                          title="önceki bölüm">API and ABI Versioning</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="../installing/index.html"
+                          title="sonraki bölüm">Installing Python Modules</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/distributing/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="../installing/index.html" title="Installing Python Modules"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="../c-api/apiabiversion.html" title="API and ABI Versioning"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.0 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Modüllerini Dağıtma</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="text" name="q" />
+          <input type="submit" value="Git" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="distributing-python-modules">
+<span id="distributing-index"></span><h1>Python Modüllerini Dağıtma<a class="headerlink" href="#distributing-python-modules" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">E-posta</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:distutils-sig&#37;&#52;&#48;python&#46;org">distutils-sig<span>&#64;</span>python<span>&#46;</span>org</a></p>
+</dd>
+</dl>
+<p>Popüler bir açık kaynak geliştirme projesi olarak Python, yazılımlarını diğer Python geliştiricilerinin açık kaynak lisans koşulları altında kullanmasını sağlayan, aktif destek sağlayan katılımcı (contributor) ve kullanıcı topluluğuna sahiptir.</p>
+<p>Bu, Python kullanıcılarının, ortak havuza kendi çözümleriyle potansiyel olarak katkıda bulunmanın yanı sıra, ortak (ve hatta bazen nadir!) sorunlara karşı halihazırda oluşturdukları çözümlerden yararlanarak, Python kullanıcılarının etkin bir şekilde paylaşımda bulunmalarına ve işbirliği yapmalarına olanak tanır.</p>
+<p>Bu kılavuz, sürecin dağıtım bölümünü kapsar. Diğer Python projelerini kurmaya yönelik bir kılavuz için <a class="reference internal" href="../installing/index.html#installing-index"><span class="std std-ref">installation guide</span></a> ‘e bakın.</p>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Kurumsal kullanıcılar için, birçok kuruluşun açık kaynaklı yazılımları kullanma ve bunlara katkıda bulunma konusunda kendi politikaları olduğunu unutmayın. Python ile sağlanan dağıtım ve kurulum araçlarını kullanırken lütfen bu tür politikaları dikkate alın.</p>
+</div>
+<section id="key-terms">
+<h2>Anahtar terimler<a class="headerlink" href="#key-terms" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org">Python Package Index</a> , diğer Python kullanıcıları tarafından kullanıma sunulan açık kaynaklı lisanslı paketlerin bir yazılım deposudur.</p></li>
+<li><p><a class="reference external" href="https://www.pypa.io/">Python Packaging Authority</a> , standart paketleme araçlarının, ilgili meta verinin ve dosya formatı standartlarının bakımından ve geliştirilmesinden sorumlu geliştiriciler ve dokümantasyon yazarları grubudur. Hem <a class="reference external" href="https://github.com/pypa">GitHub</a> hem de <a class="reference external" href="https://bitbucket.org/pypa/">Bitbucket</a> üzerinde çeşitli araçlar, dokümantasyon ve sorun izleyicileri bulundururlar.</p></li>
+<li><p><a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a>, Python standart kitaplığına ilk kez 1998 yılında eklenen orijinal derleme ve dağıtım sistemidir. <a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> ‘in doğrudan kullanımı aşamalı olarak kaldırılırken, halen mevcut paketleme ve dağıtım altyapısının temelini atmıştır. Yalnızca standart kitaplığın bir parçası olmakla kalmaz, adı başka şekillerde de yaşar (Python paketleme standartları geliştirmeyi koordine etmek için kullanılan posta listesinin adı gibi).</p></li>
+<li><p><a class="reference external" href="https://setuptools.readthedocs.io/en/latest/">setuptools</a> ilk olarak 2004’te yayınlanan <a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> için (büyük ölçüde) bir eklentidir. Değiştirilmemiş <a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> araçlarına göre en dikkate değer ilavesi, diğer paketlere bağımlılıkları bildirme yeteneğiydi. Şu anda, çok çeşitli Python sürümlerinde daha yeni paketleme standartları için tutarlı destek sunan <a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a> ‘e daha düzenli olarak güncellenen bir alternatif olarak önerilmektedir.</p></li>
+<li><p><a class="reference external" href="https://wheel.readthedocs.io/">wheel</a> (bu bağlamda), <code class="docutils literal notranslate"><span class="pre">bdist_wheel</span></code> komutunu <a class="reference internal" href="../library/distutils.html#module-distutils" title="distutils: Support for building and installing Python modules into an existing Python installation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">distutils</span></code></a>/<a class="reference external" href="https://setuptools.readthedocs.io/en/latest/">setuptools</a> dizinine ekleyen bir projedir. Bu, Python kütüphanelerinin, (ikili uzantıları içerenlerin bile) bir sisteme yerel olarak kurulmasına gerek kalmadan kurulmasına izin veren bir çapraz platform ikili paketleme biçimi (“wheels” veya “wheel files” olarak adlandırılır ve <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0427/"><strong>PEP 427</strong></a> ‘de tanımlanır) üretir.</p></li>
+</ul>
+</section>
+<section id="open-source-licensing-and-collaboration">
+<h2>Açık kaynak lisanslama ve işbirliği<a class="headerlink" href="#open-source-licensing-and-collaboration" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Dünyanın çoğu yerinde, yazılım otomatik olarak telif hakkı kapsamındadır. Bu, diğer geliştiricilerin yazılımı kopyalamak, kullanmak, değiştirmek ve yeniden dağıtmak için açık izne ihtiyaç duyduğu anlamına gelir.</p>
+<p>Açık kaynak lisanslama, bu tür bir izni nispeten tutarlı bir şekilde açıkça vermenin bir yoludur ve geliştiricilerin çeşitli sorunlara ücretsiz olarak ortak çözümler sunarak verimli bir şekilde paylaşmasına ve işbirliği yapmasına olanak tanır. Bu, birçok geliştiricinin kendi özel durumlarına nispeten benzersiz olan sorunlara odaklanmak için daha fazla zaman harcamasına izin verir.</p>
+<p>Python ile sağlanan dağıtım araçları, geliştiricilerin, isterlerse bu ortak yazılım havuzuna kendi katkılarını yapmalarını makul ölçüde basit hale getirmek için tasarlanmıştır.</p>
+<p>Aynı dağıtım araçları, yazılımın açık kaynaklı yazılım olarak yayınlanıp yayınlanmadığına bakılmaksızın, bir kuruluş içinde yazılımı dağıtmak için de kullanılabilir.</p>
+</section>
+<section id="installing-the-tools">
+<h2>Araçları yükleme<a class="headerlink" href="#installing-the-tools" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Çekirdek geliştirme ekibi, Python’un eski sürümlerinde bile tutarlı bir şekilde çalışan standart araçlara sahip olmanın önemli olduğunu keşfettiğinden, standart kütüphane, modern Python paketleme standartlarını destekleyen derleme araçlarını içermez.</p>
+<p>Şu anda önerilen derleme ve dağıtım araçları, komut satırında <code class="docutils literal notranslate"><span class="pre">pip</span></code> modülü çağrılarak kurulabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">setuptools</span> <span class="n">wheel</span> <span class="n">twine</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>POSIX kullanıcıları için (macOS ve Linux kullanıcıları dahil), bu talimatlar bir <a class="reference internal" href="../glossary.html#term-virtual-environment"><span class="xref std std-term">virtual environment</span></a> kullanıldığını varsayar.</p>
+<p>Windows kullanıcıları için bu talimatlar, Python’u kurarken sistem PATH ortam değişkenini ayarlama seçeneğinin seçildiğini varsayar.</p>
+</div>
+<p>Python Packaging Kullanıcı Kılavuzu, <a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/#packaging-tool-recommendations">currently recommended tools</a> hakkında daha fazla ayrıntı içerir.</p>
+</section>
+<section id="reading-the-python-packaging-user-guide">
+<span id="publishing-python-packages"></span><span id="index-1"></span><h2>Python Paketleme Kullanım Kılavuzunu Okumak<a class="headerlink" href="#reading-the-python-packaging-user-guide" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Python Paketleme Kullanıcı Kılavuzu, bir proje oluşturma ve yayınlamayla ilgili çeşitli temel adımları ve öğeleri kapsar:</p>
+<ul class="simple">
+<li><p><a class="reference external" href=" https://packaging.python.org/tutorials/packaging-projects/#packaging-python-projects">(en) Proje Yapısı</a> ;</p></li>
+<li><p><a class="reference external" href=" https://packaging.python.org/tutorials/packaging-projects/#creating-the-package-files">(en) Projeyi inşa etmek ve paketlemek</a> ;</p></li>
+<li><p><a class="reference external" href=" https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives">(en) Projeyi Python Paket Dizinine yükleme</a> ;</p></li>
+<li><p><a class="reference external" href=" https://packaging.python.org/specifications/pypirc/">(en) .pypirc dosyası</a>.</p></li>
+</ul>
+</section>
+<section id="how-do-i">
+<h2>Nasıl yaparım…?<a class="headerlink" href="#how-do-i" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Bunlar, bazı genel görevler için hızlı yanıtlar veya bağlantılardır.</p>
+<section id="choose-a-name-for-my-project">
+<h3>… projem için bir isim seçer misin?<a class="headerlink" href="#choose-a-name-for-my-project" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<p>Bu kolay bir başlık değil, ancak işte birkaç ipucu:</p>
+<ul class="simple">
+<li><p>adın zaten kullanımda olup olmadığını görmek için Python Paket Dizini’ni kontrol edin</p></li>
+<li><p>Bu ada sahip bir proje olup olmadığını görmek için GitHub, Bitbucket vb. gibi popüler barındırma sitelerini kontrol edin.</p></li>
+<li><p>düşündüğünüz isim için bir web aramasında ne çıktığını kontrol edin</p></li>
+<li><p>kullanıcıların yazılımınızı ararken bulmasını zorlaştırabileceğinden, özellikle birden çok anlamı olan yaygın sözcüklerden kaçının</p></li>
+</ul>
+</section>
+<section id="create-and-distribute-binary-extensions">
+<h3>… ikili uzantılar oluşturup dağıtmak?<a class="headerlink" href="#create-and-distribute-binary-extensions" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<p>Bu aslında oldukça karmaşık bir konudur ve tam olarak neyi başarmayı amaçladığınıza bağlı olarak çeşitli alternatifler mevcuttur. Daha fazla bilgi ve öneriler için Python Paketleme Kullanıcı Kılavuzuna bakın.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<p><a class="reference external" href="https://packaging.python.org/guides/packaging-binary-extensions/">Python Paketleme Kullanıcı Kılavuzu: İkili Uzantılar</a></p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Modüllerini Dağıtma</a><ul>
+<li><a class="reference internal" href="#key-terms">Anahtar terimler</a></li>
+<li><a class="reference internal" href="#open-source-licensing-and-collaboration">Açık kaynak lisanslama ve işbirliği</a></li>
+<li><a class="reference internal" href="#installing-the-tools">Araçları yükleme</a></li>
+<li><a class="reference internal" href="#reading-the-python-packaging-user-guide">Python Paketleme Kullanım Kılavuzunu Okumak</a></li>
+<li><a class="reference internal" href="#how-do-i">Nasıl yaparım…?</a><ul>
+<li><a class="reference internal" href="#choose-a-name-for-my-project">… projem için bir isim seçer misin?</a></li>
+<li><a class="reference internal" href="#create-and-distribute-binary-extensions">… ikili uzantılar oluşturup dağıtmak?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../c-api/apiabiversion.html"
+                          title="önceki bölüm">API and ABI Versioning</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="../installing/index.html"
+                          title="sonraki bölüm">Installing Python Modules</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/distributing/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="../installing/index.html" title="Installing Python Modules"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="../c-api/apiabiversion.html" title="API and ABI Versioning"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.0 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Modüllerini Dağıtma</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="text" name="q" />
+          <input type="submit" value="Git" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Ara 15, 2022.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+
+  </body>
+</html>

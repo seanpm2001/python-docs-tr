@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Python Yorumlayıcısını Kullanma &#8212; Python 3.11.0 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.0 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="3. Python’a Resmi Olmayan Bir Giriş" href="introduction.html" />
+    <link rel="prev" title="1. İştahınızı Kabartma" href="appetite.html" />
+    <link rel="canonical" href="https://docs.python.org/3/tutorial/interpreter.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <label for="menuToggler" class="toggler__label">
+        <span></span>
+    </label>
+    <nav class="nav-content" role="navigation">
+         <a href="https://www.python.org/" class="nav-logo">
+             <img src="../_static/py.svg" alt="Logo"/>
+         </a>
+        <div class="version_switcher_placeholder"></div>
+        <form role="search" class="search" action="../search.html" method="get">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                <path fill-rule="nonzero"
+                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
+            </svg>
+            <input type="text" name="q" aria-label="Hızlı Arama"/>
+            <input type="submit" value="Git"/>
+        </form>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">2. Python Yorumlayıcısını Kullanma</a><ul>
+<li><a class="reference internal" href="#invoking-the-interpreter">2.1. Yorumlayıcıyı Çağırma</a><ul>
+<li><a class="reference internal" href="#argument-passing">2.1.1. Değişken Geçirme</a></li>
+<li><a class="reference internal" href="#interactive-mode">2.1.2. Etkileşimli Mod</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-interpreter-and-its-environment">2.2. Yorumlayıcı ve Çevresi</a><ul>
+<li><a class="reference internal" href="#source-code-encoding">2.2.1. Kaynak Kodu Şeması</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="appetite.html"
+                          title="önceki bölüm"><span class="section-number">1. </span>İştahınızı Kabartma</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="introduction.html"
+                          title="sonraki bölüm"><span class="section-number">3. </span>Python’a Resmi Olmayan Bir Giriş</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/interpreter.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="3. Python’a Resmi Olmayan Bir Giriş"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="appetite.html" title="1. İştahınızı Kabartma"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.0 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Python Yorumlayıcısını Kullanma</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="text" name="q" />
+          <input type="submit" value="Git" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="using-the-python-interpreter">
+<span id="tut-using"></span><h1><span class="section-number">2. </span>Python Yorumlayıcısını Kullanma<a class="headerlink" href="#using-the-python-interpreter" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<section id="invoking-the-interpreter">
+<span id="tut-invoking"></span><h2><span class="section-number">2.1. </span>Yorumlayıcıyı Çağırma<a class="headerlink" href="#invoking-the-interpreter" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>The Python interpreter is usually installed as <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin/python3.11</span></code>
+on those machines where it is available; putting <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> in your
+Unix shell’s search path makes it possible to start it by typing the command:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3.11
+</pre></div>
+</div>
+<p>kabuğa. <a class="footnote-reference brackets" href="#id2" id="id1">1</a> Yorumlayıcının bulunduğu dizinin seçimi bir yükleme seçeneği olduğundan, Python dizini başka bir yerde de olabilir; yerel Python gurunuza veya sistem yöneticinize danışın.  (Örneğin, <code class="file docutils literal notranslate"><span class="pre">/usr/local/python</span></code> popüler bir alternatif konumdur.)</p>
+<p>On Windows machines where you have installed Python from the <a class="reference internal" href="../using/windows.html#windows-store"><span class="std std-ref">Microsoft Store</span></a>, the <code class="file docutils literal notranslate"><span class="pre">python3.11</span></code> command will be available. If you have
+the <a class="reference internal" href="../using/windows.html#launcher"><span class="std std-ref">py.exe launcher</span></a> installed, you can use the <code class="file docutils literal notranslate"><span class="pre">py</span></code>
+command. See <a class="reference internal" href="../using/windows.html#setting-envvars"><span class="std std-ref">Excursus: Setting environment variables</span></a> for other ways to launch Python.</p>
+<p>Dosya sonu karakteri (Unix’te <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd>, Windows’ta <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>) yazılması, yorumlayıcının sıfır durumuyla (zero exit status) sonlanmasına neden olur.  Bu işe yaramazsa, aşağıdaki komutu yazarak yorumlayıcıdan çıkabilirsiniz: <code class="docutils literal notranslate"><span class="pre">quit()</span></code>.</p>
+<p>Yorumlayıcının satır düzenleme özellikleri arasında etkileşimli düzenleme, geçmiş değiştirme ve <a class="reference external" href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a> kütüphanesini destekleyen sistemlerde kod tamamlama bulunur. Komut satırı düzenlemenin desteklenip desteklenmediğini görmek için belki de en hızlı denetim, elde ettiğiniz ilk Python istemine <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd> yazmaktır.  Bip sesi çıkarsa komut satırı düzenlemeniz vardır; Tuşların tanıtımı için <a class="reference internal" href="interactive.html#tut-interacting"><span class="std std-ref">Etkileşimli Girdi Düzenleme ve Geçmiş İkame</span></a> ‘e göz atabilirsiniz. Hiçbir şey görünmüyorsa veya <code class="docutils literal notranslate"><span class="pre">^P</span></code> yankılanıyorsa, komut satırı düzenlemesi kullanılamaz; yalnızca geçerli satırdaki karakterleri kaldırmak için geri alabiliyorsunuz.</p>
+<p>Yorumlayıcı bir şekilde Unix kabuğu gibi çalışır: bir tty aygıtına bağlı standart girdi ile çağrıldığında, komutları etkileşimli olarak okur ve yürütür; bir dosya adı argümanıyla veya standart girdi olarak bir dosyayla çağrıldığında, o dosyadan bir <em>komut dosyası</em> okur ve yürütür.</p>
+<p>A second way of starting the interpreter is <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">command</span> <span class="pre">[arg]</span> <span class="pre">...</span></code>,
+which executes the statement(s) in <em>command</em>, analogous to the shell’s
+<a class="reference internal" href="../using/cmdline.html#cmdoption-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c</span></code></a> option.  Since Python statements often contain spaces or other
+characters that are special to the shell, it is usually advised to quote
+<em>command</em> in its entirety.</p>
+<p>Bazı Python modülleri komut dosyası olarak da yararlıdır.  Bunlar, eğer tam adını komut satırına yazarsanız <em>modül</em> için kaynak dosyası <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">*modül*</span> <span class="pre">[argüman]</span> <span class="pre">...</span></code> kullanılarak çağrılabilir.</p>
+<p>Bir komut dosyası kullanıldığında, bazen komut dosyasını çalıştırabilmek ve daha sonra etkileşimli moda girebilmek yararlıdır.  Bu komut dosyasından önce <a class="reference internal" href="../using/cmdline.html#cmdoption-i"><code class="xref std std-option docutils literal notranslate"><span class="pre">-i</span></code></a> geçirilerek yapılabilir.</p>
+<p>Tüm komut satırı seçenekleri <a class="reference internal" href="../using/cmdline.html#using-on-general"><span class="std std-ref">Command line and environment</span></a> bölümünde açıklanmıştır.</p>
+<section id="argument-passing">
+<span id="tut-argpassing"></span><h3><span class="section-number">2.1.1. </span>Değişken Geçirme<a class="headerlink" href="#argument-passing" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<p>Yorumlayıcı tarafından bilindiğinde, komut dosyası adı ve bundan sonraki ek argüman dizelerin listesine dönüştürülür ve <code class="docutils literal notranslate"><span class="pre">sys</span></code> modülündeki <code class="docutils literal notranslate"><span class="pre">argv</span></code> değişkenine atanır.  Bu listeye <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys</span></code> öğesini yürüterek erişebilirsiniz.  Listenin uzunluğu en az birdir; komut dosyası ve argüman verilmediğinde <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code> boş bir dizedir.  Komut dosyası adı <code class="docutils literal notranslate"><span class="pre">'-'</span></code> (standart giriş anlamına gelir) olarak verildiğinde, <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code> <code class="docutils literal notranslate"><span class="pre">'-'</span></code> olarak ayarlanır.  <a class="reference internal" href="../using/cmdline.html#cmdoption-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c</span></code></a> <em>komut</em> kullanıldığında, <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">-c</span></code> olarak ayarlanır.  <a class="reference internal" href="../using/cmdline.html#cmdoption-m"><code class="xref std std-option docutils literal notranslate"><span class="pre">-m</span></code></a> <em>modül</em> kullanıldığında, <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code> bulunan modülün tam adına ayarlanır. <a class="reference internal" href="../using/cmdline.html#cmdoption-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c</span></code></a> <em>komut</em> veya <a class="reference internal" href="../using/cmdline.html#cmdoption-m"><code class="xref std std-option docutils literal notranslate"><span class="pre">-m</span></code></a> <em>modül</em> ‘den sonra bulunan seçenekler, Python yorumlayıcısının seçenek işlemesi tarafından tüketilmez, ancak komut veya modülün işlemesi için <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> içinde bırakılır.</p>
+</section>
+<section id="interactive-mode">
+<span id="tut-interactive"></span><h3><span class="section-number">2.1.2. </span>Etkileşimli Mod<a class="headerlink" href="#interactive-mode" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<p>Komutlar bir tty’den okunduğunda, yorumlayıcının <em>etkileşimli modda</em> olduğu söylenir.  Bu modda, genellikle üç büyük işaret olan <em>öncelikli bilgi istemi</em> ile bir sonraki komutu ister (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>); devam satırları için <em>ikincil istem</em> ile sorar, varsayılan olarak üç nokta (<code class="docutils literal notranslate"><span class="pre">...</span></code>). Yorumlayıcı, ilk istemi yazdırmadan önce sürüm numarasını ve telif hakkı bildirimini belirten bir karşılama iletisi yazdırır:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3.11
+<span class="go">Python 3.11 (default, April 4 2021, 09:25:04)</span>
+<span class="go">[GCC 10.2.0] on linux</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Çok satırlı bir yapıya girilirken devamlılık satırları gereklidir. Örnek olarak, <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> ifadesine bir göz atın:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">the_world_is_flat</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">the_world_is_flat</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Be careful not to fall off!&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Be careful not to fall off!</span>
+</pre></div>
+</div>
+<p>Etkileşimli mod hakkında daha fazlası için bkz. <a class="reference internal" href="appendix.html#tut-interac"><span class="std std-ref">Etkileşimli Mod</span></a>.</p>
+</section>
+</section>
+<section id="the-interpreter-and-its-environment">
+<span id="tut-interp"></span><h2><span class="section-number">2.2. </span>Yorumlayıcı ve Çevresi<a class="headerlink" href="#the-interpreter-and-its-environment" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<section id="source-code-encoding">
+<span id="tut-source-encoding"></span><h3><span class="section-number">2.2.1. </span>Kaynak Kodu Şeması<a class="headerlink" href="#source-code-encoding" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<p>Varsayılan olarak, Python kaynak dosyaları UTF-8’de kodlanmış olarak kabul edilir.  Bu kodlamada, dünyadaki çoğu dilin karakterleri dize değişmezlerinde, tanımlayıcılarda ve yorumlarda aynı anda kullanılabilir — standart kütüphane tanımlayıcılar için yalnızca ASCII karakterleri kullansa da, herhangi bir taşınabilir kodun izlemesi gereken bir kuraldır.  Tüm bu karakterleri düzgün görüntülemek için, düzenleyicinizin dosyanın UTF-8 olduğunu tanıması ve dosyadaki tüm karakterleri destekleyen bir yazı tipi kullanması gerekir.</p>
+<p>Varsayılan dil şeması dışında bir şema bildirmek için, dosyanın <em>ilk</em> satırı olarak özel bir yorum satırı eklenmelidir.  Sözdizimi aşağıdaki gibidir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: encoding -*-</span>
+</pre></div>
+</div>
+<p>burada <em>kodlama</em>, Python tarafından desteklenen geçerli <code class="xref py py-mod docutils literal notranslate"><span class="pre">codec</span></code> bileşenlerinden biridir.</p>
+<p>Örneğin, Windows-1252 şemasının kullanılacağını bildirmek için, kaynak kod dosyanızın ilk satırı şu olmalıdır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: cp1252 -*-</span>
+</pre></div>
+</div>
+<p><em>İlk satır</em> kuralının bir istisnası, kaynak kodun <a class="reference internal" href="appendix.html#tut-scripts"><span class="std std-ref">UNIX “shebang” line</span></a> satırı ile başlamasıdır.  Bu durumda, şema bildirimi dosyanın ikinci satırı olarak eklenmelidir.  Örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: cp1252 -*-</span>
+</pre></div>
+</div>
+<p class="rubric">Dipnotlar</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Unix’te, Python 3.x yorumlayıcısı varsayılan olarak <code class="docutils literal notranslate"><span class="pre">python</span></code> adlı yürütülebilir dosyayla yüklenmez, böylece aynı anda yüklenen bir Python 2.x yürütülebilir dosyasıyla çakışmaz.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">2. Python Yorumlayıcısını Kullanma</a><ul>
+<li><a class="reference internal" href="#invoking-the-interpreter">2.1. Yorumlayıcıyı Çağırma</a><ul>
+<li><a class="reference internal" href="#argument-passing">2.1.1. Değişken Geçirme</a></li>
+<li><a class="reference internal" href="#interactive-mode">2.1.2. Etkileşimli Mod</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-interpreter-and-its-environment">2.2. Yorumlayıcı ve Çevresi</a><ul>
+<li><a class="reference internal" href="#source-code-encoding">2.2.1. Kaynak Kodu Şeması</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="appetite.html"
+                          title="önceki bölüm"><span class="section-number">1. </span>İştahınızı Kabartma</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="introduction.html"
+                          title="sonraki bölüm"><span class="section-number">3. </span>Python’a Resmi Olmayan Bir Giriş</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/interpreter.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="3. Python’a Resmi Olmayan Bir Giriş"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="appetite.html" title="1. İştahınızı Kabartma"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.0 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Python Yorumlayıcısını Kullanma</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="text" name="q" />
+          <input type="submit" value="Git" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Ara 15, 2022.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+
+  </body>
+</html>
