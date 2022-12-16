@@ -5,8 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Event Loop" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/library/asyncio-eventloop.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Source code: Lib/asyncio/events.py, Lib/asyncio/base_events.py Preface The event loop is the core of every asyncio application. Event loops run asynchronous tasks and callbacks, perform network IO ..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Source code: Lib/asyncio/events.py, Lib/asyncio/base_events.py Preface The event loop is the core of every asyncio application. Event loops run asynchronous tasks and callbacks, perform network IO ..." />
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+<meta name="theme-color" content="#3776ab">
 
-    <title>Event Loop &#8212; Python 3.11.0 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop &#8212; Python 3.11.1 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +31,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Python 3.11.0 belgelendirmesi içinde ara"
+          title="Python 3.11.1 belgelendirmesi içinde ara"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
     <link rel="index" title="Dizin" href="../genindex.html" />
@@ -161,7 +172,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -222,10 +233,11 @@ an event loop:</p>
 <dt class="sig sig-object py" id="asyncio.get_event_loop">
 <span class="sig-prename descclassname"><span class="pre">asyncio.</span></span><span class="sig-name descname"><span class="pre">get_event_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.get_event_loop" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
 <dd><p>Get the current event loop.</p>
-<p>If there is no current event loop set in the current OS thread,
-the OS thread is main, and <a class="reference internal" href="#asyncio.set_event_loop" title="asyncio.set_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_event_loop()</span></code></a> has not yet
-been called, asyncio will create a new event loop and set it as the
-current one.</p>
+<p>When called from a coroutine or a callback (e.g. scheduled with
+call_soon or similar API), this function will always return the
+running event loop.</p>
+<p>If there is no running event loop set, the function will return
+the result of <code class="docutils literal notranslate"><span class="pre">get_event_loop_policy().get_event_loop()</span></code> call.</p>
 <p>Because this function has rather complex behavior (especially
 when custom event loop policies are in use), using the
 <a class="reference internal" href="#asyncio.get_running_loop" title="asyncio.get_running_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_running_loop()</span></code></a> function is preferred to <a class="reference internal" href="#asyncio.get_event_loop" title="asyncio.get_event_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_loop()</span></code></a>
@@ -234,10 +246,15 @@ in coroutines and callbacks.</p>
 instead of using these lower level functions to manually create and close an
 event loop.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">3.10 sürümünden beri kullanım dışı: </span>Emits a deprecation warning if there is no running event loop.
-In future Python releases, this function may become an alias of
-<a class="reference internal" href="#asyncio.get_running_loop" title="asyncio.get_running_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_running_loop()</span></code></a> and will accordingly raise a
-<a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> if there is no running event loop.</p>
+<p><span class="versionmodified deprecated">3.10 sürümünden beri kullanım dışı: </span>Deprecation warning is emitted if there is no current event loop.
+In Python 3.12 it will be an error.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>In Python versions 3.10.0–3.10.8 and 3.11.0 this function
+(and other functions which used it implicitly) emitted a
+<a class="reference internal" href="exceptions.html#DeprecationWarning" title="DeprecationWarning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> if there was no running event loop, even if
+the current loop was set.</p>
 </div>
 </dd></dl>
 
@@ -1004,7 +1021,8 @@ reading.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.loop.remove_reader">
 <span class="sig-prename descclassname"><span class="pre">loop.</span></span><span class="sig-name descname"><span class="pre">remove_reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.loop.remove_reader" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Stop monitoring the <em>fd</em> file descriptor for read availability.</p>
+<dd><p>Stop monitoring the <em>fd</em> file descriptor for read availability. Returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>fd</em> was previously being monitored for reads.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1019,7 +1037,8 @@ writing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="asyncio.loop.remove_writer">
 <span class="sig-prename descclassname"><span class="pre">loop.</span></span><span class="sig-name descname"><span class="pre">remove_writer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#asyncio.loop.remove_writer" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Stop monitoring the <em>fd</em> file descriptor for write availability.</p>
+<dd><p>Stop monitoring the <em>fd</em> file descriptor for write availability. Returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>fd</em> was previously being monitored for writes.</p>
 </dd></dl>
 
 <p>See also <a class="reference internal" href="asyncio-platforms.html#asyncio-platform-support"><span class="std std-ref">Platform Support</span></a> section
@@ -2032,7 +2051,7 @@ using the <a class="reference internal" href="#asyncio.loop.add_signal_handler" 
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -2070,7 +2089,7 @@ using the <a class="reference internal" href="#asyncio.loop.add_signal_handler" 
 <br />
     <br />
 
-    Son güncelleme: Ara 15, 2022.
+    Son güncelleme: Ara 16, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

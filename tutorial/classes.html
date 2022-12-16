@@ -5,8 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="9. Sınıflar" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/classes.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Sınıflar, verileri ve işlevleri bir arada tutan bir araçtır. Yeni bir sınıf oluşturulurken, objeye ait yeni örnekler (instances) oluşturulur. Sınıf örnekleri, durumlarını korumak için onlara ilişti..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Sınıflar, verileri ve işlevleri bir arada tutan bir araçtır. Yeni bir sınıf oluşturulurken, objeye ait yeni örnekler (instances) oluşturulur. Sınıf örnekleri, durumlarını korumak için onlara ilişti..." />
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+<meta name="theme-color" content="#3776ab">
 
-    <title>9. Sınıflar &#8212; Python 3.11.0 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. Sınıflar &#8212; Python 3.11.1 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +31,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Python 3.11.0 belgelendirmesi içinde ara"
+          title="Python 3.11.1 belgelendirmesi içinde ara"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
     <link rel="index" title="Dizin" href="../genindex.html" />
@@ -154,7 +165,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Öğreticisi</a> &#187;</li>
@@ -204,11 +215,17 @@
 <p>Kapsamlar statik olarak belirlense de, dinamik olarak kullanılırlar. Yürütme sırasında herhangi bir zamanda, ad alanlarına doğrudan erişilebilen 3 veya 4 iç içe kapsam vardır:</p>
 <ul class="simple">
 <li><p>En içte bulunan kapsam, ilk aranan olmakla birlikte yerel isimleri içerir.</p></li>
-<li><p>En yakın kapsayan kapsamdan başlayarak aranan kapsayan fonksiyonların kapsamları yerel olmayan, aynı zamanda genel olmayan adlar içerir</p></li>
+<li><p>the scopes of any enclosing functions, which are searched starting with the
+nearest enclosing scope, contain non-local, but also non-global names</p></li>
 <li><p>Sondan bir önceki kapsam, geçerli modülün genel adlarını içerir</p></li>
 <li><p>En dıştaki kapsam (en son aranan), yerleşik adlar içeren ad alanıdır</p></li>
 </ul>
-<p>Bir ad genel olarak bildirilirse, tüm başvurular ve atamalar doğrudan modülün genel adlarını içeren orta kapsama gider.  En iç kapsamın dışında bulunan değişkenleri yeniden bağlamak için <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> ifadesi kullanılabilir; yerel olarak bildirilmezse de, bu değişkenler salt okunurdur (böyle bir değişken düzenlenirse, aynı adlı dış değişkeni değiştirmeden en iç kapsamda <em>yeni</em> bir yerel değişken oluşturur).</p>
+<p>If a name is declared global, then all references and assignments go directly to
+the next-to-last scope containing the module’s global names.  To rebind variables
+found outside of the innermost scope, the <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> statement can be
+used; if not declared nonlocal, those variables are read-only (an attempt to
+write to such a variable will simply create a <em>new</em> local variable in the
+innermost scope, leaving the identically named outer variable unchanged).</p>
 <p>Genellikle, yerel kapsam (metinsel olarak) geçerli fonksiyonun yerel adlarına başvurur.  Dış fonksiyonlarda, yerel kapsam genel kapsamla aynı ad alanına başvurur: modülün ad alanı. Sınıf tanımları yerel kapsamda başka bir ad alanı yerleştirir.</p>
 <p>Kapsamların metinsel olarak belirlendiğini fark etmek önemlidir: bir modülde tanımlanan bir işlevin genel kapsamı, işlevin nereden veya hangi diğer adla adlandırıldığından bağımsız olarak modülün ad alanıdır.  Öte yandan, gerçek ad araması dinamik olarak yapılır, çalışma zamanında — ancak, dil tanımı statik ad çözümlemelerine doğru, “derleme” zamanında gelişir, bu nedenle dinamik ad çözümlemesini güvenmeyin!  (Aslında, yerel değişkenler zaten statik olarak belirlenir.)</p>
 <p>Python’un özel bir cilvesi, eğer <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> veya <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> deyimi geçerli değilse – isimlere yapılan atamaların her zaman en içteki kapsama girmesidir. Atamalar verileri kopyalamaz — adları nesnelere bağlarlar.  Aynı şey silme için de geçerlidir: <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">x</span></code> deyimi, <code class="docutils literal notranslate"><span class="pre">x</span></code> bağlamasını yerel kapsam tarafından başvurulan ad alanından kaldırır.  Aslında, yeni adlar tanıtan tüm işlemler yerel kapsamı kullanır: özellikle, <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> ifadeleri ve işlev tanımları modül veya işlev adını yerel kapsamda bağlar.</p>
@@ -746,7 +763,7 @@ in this example, a new, initialized instance can be obtained by:</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python Öğreticisi</a> &#187;</li>
@@ -782,7 +799,7 @@ in this example, a new, initialized instance can be obtained by:</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 15, 2022.
+    Son güncelleme: Ara 16, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

@@ -5,8 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Gömülü Türler" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/library/stdtypes.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Aşağıdaki bölümlerde, yorumlayıcıda yerleşik olarak yer alan standart türler açıklanmaktadır. Başlıca gömülü türler sayısallar, diziler, eşleşmeler, sınıflar, örnekler ve kural dışı durumlardır. Ba..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Aşağıdaki bölümlerde, yorumlayıcıda yerleşik olarak yer alan standart türler açıklanmaktadır. Başlıca gömülü türler sayısallar, diziler, eşleşmeler, sınıflar, örnekler ve kural dışı durumlardır. Ba..." />
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+<meta name="theme-color" content="#3776ab">
 
-    <title>Gömülü Türler &#8212; Python 3.11.0 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gömülü Türler &#8212; Python 3.11.1 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
@@ -20,7 +31,7 @@
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Python 3.11.0 belgelendirmesi içinde ara"
+          title="Python 3.11.1 belgelendirmesi içinde ara"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
     <link rel="index" title="Dizin" href="../genindex.html" />
@@ -203,7 +214,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">The Python Standard Library</a> &#187;</li>
@@ -4434,7 +4445,7 @@ available (for example, <code class="docutils literal notranslate"><span class="
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># get back a read-only proxy for the original dictionary</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">values</span><span class="o">.</span><span class="n">mapping</span>
-<span class="go">mappingproxy({&#39;eggs&#39;: 2, &#39;sausage&#39;: 1, &#39;bacon&#39;: 1, &#39;spam&#39;: 500})</span>
+<span class="go">mappingproxy({&#39;bacon&#39;: 1, &#39;spam&#39;: 500})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">values</span><span class="o">.</span><span class="n">mapping</span><span class="p">[</span><span class="s1">&#39;spam&#39;</span><span class="p">]</span>
 <span class="go">500</span>
 </pre></div>
@@ -5011,7 +5022,7 @@ and the sign are not counted towards the limit.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;2&#39;</span> <span class="o">*</span> <span class="mi">5432</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="c">...</span>
-<span class="gr">ValueError</span>: <span class="n">Exceeds the limit (4300) for integer string conversion: value has 5432 digits; use sys.set_int_max_str_digits() to increase the limit.</span>
+<span class="gr">ValueError</span>: <span class="n">Exceeds the limit (4300 digits) for integer string conversion: value has 5432 digits; use sys.set_int_max_str_digits() to increase the limit.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;2&#39;</span> <span class="o">*</span> <span class="mi">4300</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 <span class="go">4300</span>
@@ -5019,7 +5030,7 @@ and the sign are not counted towards the limit.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i_squared</span><span class="p">))</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="c">...</span>
-<span class="gr">ValueError</span>: <span class="n">Exceeds the limit (4300) for integer string conversion: value has 8599 digits; use sys.set_int_max_str_digits() to increase the limit.</span>
+<span class="gr">ValueError</span>: <span class="n">Exceeds the limit (4300 digits) for integer string conversion: value has 8599 digits; use sys.set_int_max_str_digits() to increase the limit.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">i_squared</span><span class="p">))</span>
 <span class="go">7144</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">i_squared</span><span class="p">),</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>  <span class="c1"># Hexadecimal is unlimited.</span>
@@ -5293,7 +5304,7 @@ these APIs were added in security patch releases in versions before 3.11.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.11.0 Documentation</a> &#187;
+      <a href="../index.html">3.11.1 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -5329,7 +5340,7 @@ these APIs were added in security patch releases in versions before 3.11.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 15, 2022.
+    Son güncelleme: Ara 16, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
