@@ -395,17 +395,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="breakpoint">
 <span class="sig-name descname"><span class="pre">breakpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#breakpoint" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>This function drops you into the debugger at the call site.  Specifically,
-it calls <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a>, passing <code class="docutils literal notranslate"><span class="pre">args</span></code> and <code class="docutils literal notranslate"><span class="pre">kws</span></code> straight
-through.  By default, <code class="docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code> calls
-<a class="reference internal" href="pdb.html#pdb.set_trace" title="pdb.set_trace"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdb.set_trace()</span></code></a> expecting no arguments.  In this case, it is
-purely a convenience function so you don’t have to explicitly import
-<a class="reference internal" href="pdb.html#module-pdb" title="pdb: The Python debugger for interactive interpreters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a> or type as much code to enter the debugger.  However,
-<a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> can be set to some other function and
-<a class="reference internal" href="#breakpoint" title="breakpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">breakpoint()</span></code></a> will automatically call that, allowing you to drop into
-the debugger of choice.
-If <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> is not accessible, this function will
-raise <a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a>.</p>
+<dd><p>Bu fonksiyon sizi çağrılma bölgesindeki hata ayıklayıcıya bırakır.  Spesifik olarak, <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> ‘u çağırır, <code class="docutils literal notranslate"><span class="pre">args</span></code> ve <code class="docutils literal notranslate"><span class="pre">kws</span></code> ‘yi doğrudan geçer. Varsayılan olarak, <code class="docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code> hiçbir parametre beklemeden <a class="reference internal" href="pdb.html#pdb.set_trace" title="pdb.set_trace"><code class="xref py py-func docutils literal notranslate"><span class="pre">pdb.set_trace()</span></code></a> fonksiyonunu çağırır. Bu durumda, bu tamamen size kolaylık sağlamak içindir, bu nedenle hata ayıklayıcıya girmek için <a class="reference internal" href="pdb.html#module-pdb" title="pdb: The Python debugger for interactive interpreters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a> ‘yi içe aktarmanız veya fazla kod yazmanız gerekmez. Buna rağmen, <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> başka bir fonksiyona ayarlanabilir ve <a class="reference internal" href="#breakpoint" title="breakpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">breakpoint()</span></code></a> otomatik olarak bunu çağırır ve tercih ettiğiniz hata ayıklayıcıya girmenize izin verir. Eğer <a class="reference internal" href="sys.html#sys.breakpointhook" title="sys.breakpointhook"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.breakpointhook()</span></code></a> ulaşılabilir değilse, bu fonksiyon <a class="reference internal" href="exceptions.html#RuntimeError" title="RuntimeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> hatasını verecektir.</p>
 <p class="audit-hook"><code class="docutils literal notranslate"><span class="pre">breakpointhook</span></code> parametresi ile <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">denetleme olayı</span></a> <code class="docutils literal notranslate"><span class="pre">builtins.breakpoint</span></code> ortaya çıkartır.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">3.7 sürümünde geldi.</span></p>
@@ -480,8 +470,7 @@ raise <a class="reference internal" href="exceptions.html#RuntimeError" title="R
 <p><span class="versionmodified changed">3.10 sürümünde değişti: </span>Sınıf metotları artık (<code class="docutils literal notranslate"><span class="pre">__module__</span></code>, <code class="docutils literal notranslate"><span class="pre">__name__</span></code>, <code class="docutils literal notranslate"><span class="pre">__qualname__</span></code>, <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> and <code class="docutils literal notranslate"><span class="pre">__annotations__</span></code>) metot özelliklerini miras alır ve yeni bir <code class="docutils literal notranslate"><span class="pre">__wrapped__</span></code> özelliğine sahiplerdir.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">3.11 sürümünde değişti: </span>Class methods can no longer wrap other <a class="reference internal" href="../glossary.html#term-descriptor"><span class="xref std std-term">descriptors</span></a> such as
-<a class="reference internal" href="#property" title="property"><code class="xref py py-func docutils literal notranslate"><span class="pre">property()</span></code></a>.</p>
+<p><span class="versionmodified changed">3.11 sürümünde değişti: </span>Sınıf metotları artık <a class="reference internal" href="#property" title="property"><code class="xref py py-func docutils literal notranslate"><span class="pre">property()</span></code></a> gibi diğer <a class="reference internal" href="../glossary.html#term-descriptor"><span class="xref std std-term">descriptor</span></a> ‘ları sarmalayamaz.</p>
 </div>
 </dd></dl>
 
@@ -1685,7 +1674,7 @@ updated.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 16, 2022.
+    Son güncelleme: Ara 28, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
