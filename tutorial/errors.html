@@ -88,13 +88,13 @@
 <li><a class="reference internal" href="#syntax-errors">8.1. Söz Dizimi Hataları</a></li>
 <li><a class="reference internal" href="#exceptions">8.2. Özel Durumlar</a></li>
 <li><a class="reference internal" href="#handling-exceptions">8.3. Özel Durumları İşleme</a></li>
-<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Ortaya Çıkartma</a></li>
+<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Yükseltme</a></li>
 <li><a class="reference internal" href="#exception-chaining">8.5. İstisna Zincirleme</a></li>
 <li><a class="reference internal" href="#user-defined-exceptions">8.6. Kullanıcı Tanımlı İstisnalar</a></li>
 <li><a class="reference internal" href="#defining-clean-up-actions">8.7. Temizleme Eylemlerini Tanımlama</a></li>
 <li><a class="reference internal" href="#predefined-clean-up-actions">8.8. Önceden Tanımlanmış Temizleme Eylemleri</a></li>
-<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Raising and Handling Multiple Unrelated Exceptions</a></li>
-<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. Enriching Exceptions with Notes</a></li>
+<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Birden Fazla Alakasız İstisna Oluşturma ve İşleme</a></li>
+<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. İstisnaları Notlarla Zenginleştirme</a></li>
 </ul>
 </li>
 </ul>
@@ -262,14 +262,8 @@
 </pre></div>
 </div>
 <p><em>except yan tümceleri</em> tersine çevrilmişse (ilk olarak <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">B</span></code> ile) B, B, B şeklinde yazdırılacaktır — ilk eşleşen <em>except yan tümcesi</em> tetiklenir.</p>
-<p>When an exception occurs, it may have associated values, also known as the
-exception’s <em>arguments</em>. The presence and types of the arguments depend on the
-exception type.</p>
-<p>The <em>except clause</em> may specify a variable after the exception name.  The
-variable is bound to the exception instance which typically has an <code class="docutils literal notranslate"><span class="pre">args</span></code>
-attribute that stores the arguments. For convenience, builtin exception
-types define <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code> to print all the arguments without explicitly
-accessing <code class="docutils literal notranslate"><span class="pre">.args</span></code>.</p>
+<p>Bir istisna oluştuğunda, istisnanın <em>argümanı</em> olarak da bilinen ilişkili bir değeri olabilir. Argümanın varlığı ve türü, istisna türüne bağlıdır.</p>
+<p><em>except yan tümcesi</em>, istisna adından sonra bir değişken belirtebilir.  Değişken, genellikle bağımsız değişkenleri depolayan bir <code class="docutils literal notranslate"><span class="pre">args</span></code> özniteliğine sahip istisna örneğine bağlıdır. Kolaylık sağlamak için, yerleşik istisna türleri <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code>, <code class="docutils literal notranslate"><span class="pre">.args</span></code> öğesine açıkça erişmeden tüm argümanları yazdırmak için tanımlar.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">inst</span><span class="p">:</span>
@@ -288,22 +282,10 @@ accessing <code class="docutils literal notranslate"><span class="pre">.args</sp
 <span class="go">y = eggs</span>
 </pre></div>
 </div>
-<p>The exception’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code> output is printed as the last part (‘detail’)
-of the message for unhandled exceptions.</p>
-<p><a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BaseException</span></code></a> is the common base class of all exceptions. One of its
-subclasses, <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>, is the base class of all the non-fatal exceptions.
-Exceptions which are not subclasses of <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> are not typically
-handled, because they are used to indicate that the program should terminate.
-They include <a class="reference internal" href="../library/exceptions.html#SystemExit" title="SystemExit"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemExit</span></code></a> which is raised by <a class="reference internal" href="../library/sys.html#sys.exit" title="sys.exit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> and
-<a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a> which is raised when a user wishes to interrupt
-the program.</p>
-<p><a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> can be used as a wildcard that catches (almost) everything.
-However, it is good practice to be as specific as possible with the types
-of exceptions that we intend to handle, and to allow any unexpected
-exceptions to propagate on.</p>
-<p>The most common pattern for handling <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> is to print or log
-the exception and then re-raise it (allowing a caller to handle the
-exception as well):</p>
+<p>İstisnanın <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code> çıktısı, işlenmeyen istisnalar için mesajın son kısmı (‘ayrıntı’) olarak yazdırılır.</p>
+<p><a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BaseException</span></code></a>, tüm istisnaların ortak temel sınıfıdır. Alt sınıflarından biri olan <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>, tüm önemli olmayan istisnaların temel sınıfıdır. <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> öğesinin alt sınıfları olmayan istisnalar genellikle işlenmez, çünkü bunlar programın sona ermesi gerektiğini belirtmek için kullanılır. Bunlar <a class="reference internal" href="../library/sys.html#sys.exit" title="sys.exit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> tarafından oluşturulan <a class="reference internal" href="../library/exceptions.html#SystemExit" title="SystemExit"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemExit</span></code></a> ve bir kullanıcı programı kesmek istediğinde ortaya çıkan <a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a> içerir.</p>
+<p><a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> (neredeyse) her şeyi yakalayan bir joker karakter (wildcard) olarak kullanılabilir. Ancak, işlemeyi amaçladığımız istisna türleri konusunda mümkün olduğunca spesifik olmak ve beklenmeyen istisnaların yayılmasına izin vermek iyi bir uygulamadır.</p>
+<p><a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> işlemek için en yaygın model, istisnayı yazdırmak veya log’a kaydetmek ve ardından yeniden yükseltmektir (arayanın istisnayı da işlemesine izin verir):</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -331,9 +313,7 @@ exception as well):</p>
 </pre></div>
 </div>
 <p><code class="xref std std-keyword docutils literal notranslate"><span class="pre">else</span></code> yan tümcesinin kullanılması, <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> yan tümcesine ek kod eklemekten daha iyidir çünkü yanlışlıkla <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> tarafından korunan kod tarafından oluşturulmamış bir istisnayı yakalamayı önler. … <code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code> ifadesi.</p>
-<p>Exception handlers do not handle only exceptions that occur immediately in the
-<em>try clause</em>, but also those that occur inside functions that are called (even
-indirectly) in the <em>try clause</em>. For example:</p>
+<p>İstisna işleyicileri, yalnızca <em>try yan tümcesinde</em> anında ortaya çıkan istisnaları değil, aynı zamanda <em>try yan tümcesinde</em> çağrılan (dolaylı olarak da olsa) işlevlerin içinde oluşan istisnaları da işler. Örneğin:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">this_fails</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
 <span class="gp">...</span>
@@ -347,7 +327,7 @@ indirectly) in the <em>try clause</em>. For example:</p>
 </div>
 </section>
 <section id="raising-exceptions">
-<span id="tut-raising"></span><h2><span class="section-number">8.4. </span>Hata Ortaya Çıkartma<a class="headerlink" href="#raising-exceptions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<span id="tut-raising"></span><h2><span class="section-number">8.4. </span>Hata Yükseltme<a class="headerlink" href="#raising-exceptions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> ifadesi, programcının belirli bir istisnanın gerçekleşmesini zorlamasını sağlar. Örneğin:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;HiThere&#39;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
@@ -355,11 +335,7 @@ indirectly) in the <em>try clause</em>. For example:</p>
 <span class="gr">NameError</span>: <span class="n">HiThere</span>
 </pre></div>
 </div>
-<p>The sole argument to <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> indicates the exception to be raised.
-This must be either an exception instance or an exception class (a class that
-derives from <a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></a>, such as <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> or one of its
-subclasses).  If an exception class is passed, it will be implicitly
-instantiated by calling its constructor with no arguments:</p>
+<p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> için tek argüman, ortaya çıkacak istisnayı belirtir. Bu, bir istisna örneği veya bir istisna sınıfı (<a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></a> ‘dan türetilen bir sınıf, örneğin <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> veya alt sınıflarından) olmalıdır.  Bir istisna sınıfı iletilirse, yapıcısını hiçbir argüman olmadan çağırarak dolaylı olarak başlatılır:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">ValueError</span>  <span class="c1"># shorthand for &#39;raise ValueError()&#39;</span>
 </pre></div>
 </div>
@@ -379,9 +355,7 @@ instantiated by calling its constructor with no arguments:</p>
 </section>
 <section id="exception-chaining">
 <span id="tut-exception-chaining"></span><h2><span class="section-number">8.5. </span>İstisna Zincirleme<a class="headerlink" href="#exception-chaining" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
-<p>If an unhandled exception occurs inside an <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> section, it will
-have the exception being handled attached to it and included in the error
-message:</p>
+<p>Bir <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> bölümü içinde işlenmeyen bir istisna meydana gelirse, istisnanın kendisine eklenmiş olarak işlenmesi ve şu hata mesajına dahil edilmesi gerekir:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;database.sqlite&quot;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
@@ -398,8 +372,7 @@ message:</p>
 <span class="gr">RuntimeError</span>: <span class="n">unable to handle error</span>
 </pre></div>
 </div>
-<p>To indicate that an exception is a direct consequence of another, the
-<a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> statement allows an optional <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">from</span></code></a> clause:</p>
+<p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> ifadesi, bir istisnanın başka bir istisnanın doğrudan sonucu olduğunu belirtmek için isteğe bağlı <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">from</span></code></a> yan tümcesine izin verir:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exc must be exception instance or None.</span>
 <span class="k">raise</span> <span class="ne">RuntimeError</span> <span class="kn">from</span> <span class="nn">exc</span>
 </pre></div>
@@ -425,8 +398,7 @@ message:</p>
 <span class="gr">RuntimeError</span>: <span class="n">Failed to open database</span>
 </pre></div>
 </div>
-<p>It also allows disabling automatic exception chaining using the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">None</span></code>
-idiom:</p>
+<p>Ayrıca, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">None</span></code> deyimi kullanılarak otomatik istisna zincirlemenin devre dışı bırakılmasına izin verir:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;database.sqlite&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
@@ -442,12 +414,9 @@ idiom:</p>
 <section id="user-defined-exceptions">
 <span id="tut-userexceptions"></span><h2><span class="section-number">8.6. </span>Kullanıcı Tanımlı İstisnalar<a class="headerlink" href="#user-defined-exceptions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Programlar yeni bir istisna sınıfı oluşturarak kendi özel durumlarını adlandırabilir (Python sınıfları hakkında daha fazla bilgi için bkz: <a class="reference internal" href="classes.html#tut-classes"><span class="std std-ref">Sınıflar</span></a> ).  Özel durumlar genellikle doğrudan veya dolaylı olarak <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> sınıfından türetilmelidir.</p>
-<p>Exception classes can be defined which do anything any other class can do, but
-are usually kept simple, often only offering a number of attributes that allow
-information about the error to be extracted by handlers for the exception.</p>
+<p>İstisna sınıfları, başka herhangi bir sınıfın yapabileceği her şeyi yapan tanımlanabilir, ancak genellikle basit tutulur ve çoğu zaman yalnızca istisna için işleyiciler tarafından hatayla ilgili bilgilerin çıkarılmasına izin veren bir dizi öznitelik sunar.</p>
 <p>Çoğu özel durum, standart özel durumların adlandırışına benzer şekilde “Hata” ile biten adlarla tanımlanır.</p>
-<p>Many standard modules define their own exceptions to report errors that may
-occur in functions they define.</p>
+<p>Birçok standart modül, tanımladıkları işlevlerde oluşabilecek hataları raporlamak için kendi istisnalarını tanımlar.</p>
 </section>
 <section id="defining-clean-up-actions">
 <span id="tut-cleanup"></span><h2><span class="section-number">8.7. </span>Temizleme Eylemlerini Tanımlama<a class="headerlink" href="#defining-clean-up-actions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
@@ -526,15 +495,9 @@ occur in functions they define.</p>
 <p>İfade çalıştırıldıktan sonra, satırlar işlenirken bir sorunla karşılaşılsa bile <em>f</em> dosyası her zaman kapatılır. Dosyalar gibi önceden tanımlanmış temizleme eylemleri sağlayan nesneler dokümantasyonlarında bunu gösterir.</p>
 </section>
 <section id="raising-and-handling-multiple-unrelated-exceptions">
-<span id="tut-exception-groups"></span><h2><span class="section-number">8.9. </span>Raising and Handling Multiple Unrelated Exceptions<a class="headerlink" href="#raising-and-handling-multiple-unrelated-exceptions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
-<p>There are situations where it is necessary to report several exceptions that
-have occurred. This is often the case in concurrency frameworks, when several
-tasks may have failed in parallel, but there are also other use cases where
-it is desirable to continue execution and collect multiple errors rather than
-raise the first exception.</p>
-<p>The builtin <a class="reference internal" href="../library/exceptions.html#ExceptionGroup" title="ExceptionGroup"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ExceptionGroup</span></code></a> wraps a list of exception instances so
-that they can be raised together. It is an exception itself, so it can be
-caught like any other exception.</p>
+<span id="tut-exception-groups"></span><h2><span class="section-number">8.9. </span>Birden Fazla Alakasız İstisna Oluşturma ve İşleme<a class="headerlink" href="#raising-and-handling-multiple-unrelated-exceptions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Meydana gelen birkaç istisnanın rapor edilmesinin gerekli olduğu durumlar vardır. Bu, genellikle birkaç görevin paralel olarak başarısız olabileceği eşzamanlılık çerçevelerinde geçerlidir, ancak ilk istisnayı yükseltmek yerine yürütmeye devam etmenin ve birden çok hata toplamanın istendiği başka kullanım durumları da vardır.</p>
+<p>Yerleşik <a class="reference internal" href="../library/exceptions.html#ExceptionGroup" title="ExceptionGroup"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ExceptionGroup</span></code></a>, birlikte oluşturulabilmeleri için istisna örneklerinin bir listesini sarar. Kendisi bir istisnadır, bu nedenle herhangi bir istisna gibi yakalanabilir.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">excs</span> <span class="o">=</span> <span class="p">[</span><span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;error 1&#39;</span><span class="p">),</span> <span class="ne">SystemError</span><span class="p">(</span><span class="s1">&#39;error 2&#39;</span><span class="p">)]</span>
 <span class="gp">... </span>    <span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span><span class="s1">&#39;there were problems&#39;</span><span class="p">,</span> <span class="n">excs</span><span class="p">)</span>
@@ -558,12 +521,7 @@ caught like any other exception.</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>By using <code class="docutils literal notranslate"><span class="pre">except*</span></code> instead of <code class="docutils literal notranslate"><span class="pre">except</span></code>, we can selectively
-handle only the exceptions in the group that match a certain
-type. In the following example, which shows a nested exception
-group, each <code class="docutils literal notranslate"><span class="pre">except*</span></code> clause extracts from the group exceptions
-of a certain type while letting all other exceptions propagate to
-other clauses and eventually to be reraised.</p>
+<p><code class="docutils literal notranslate"><span class="pre">except</span></code> yerine <code class="docutils literal notranslate"><span class="pre">except*</span></code> kullanarak, yalnızca gruptaki belirli bir türle eşleşen istisnaları seçerek işleyebiliriz. İç içe geçmiş bir istisna grubunu gösteren aşağıdaki örnekte, her bir <code class="docutils literal notranslate"><span class="pre">except*</span></code> yan tümcesi, diğer tüm istisnaların diğer yan tümcelere yayılmasına ve sonunda yeniden ortaya çıkmasına izin verirken, belirli bir türdeki grup istisnalarını çıkarır.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="p">[</span><span class="ne">OSError</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
@@ -592,10 +550,7 @@ other clauses and eventually to be reraised.</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>Note that the exceptions nested in an exception group must be instances,
-not types. This is because in practice the exceptions would typically
-be ones that have already been raised and caught by the program, along
-the following pattern:</p>
+<p>Bir istisna grubunda iç içe geçmiş istisnaların türler değil, örnekler olması gerektiğini unutmayın. Bunun nedeni, pratikte istisnaların tipik olarak, aşağıdaki kalıp boyunca program tarafından önceden oluşturulmuş ve yakalanmış olanlar olmasıdır:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">excs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">... </span><span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
@@ -610,13 +565,8 @@ the following pattern:</p>
 </div>
 </section>
 <section id="enriching-exceptions-with-notes">
-<h2><span class="section-number">8.10. </span>Enriching Exceptions with Notes<a class="headerlink" href="#enriching-exceptions-with-notes" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
-<p>When an exception is created in order to be raised, it is usually initialized
-with information that describes the error that has occurred. There are cases
-where it is useful to add information after the exception was caught. For this
-purpose, exceptions have a method <code class="docutils literal notranslate"><span class="pre">add_note(note)</span></code> that accepts a string and
-adds it to the exception’s notes list. The standard traceback rendering
-includes all notes, in the order they were added, after the exception.</p>
+<h2><span class="section-number">8.10. </span>İstisnaları Notlarla Zenginleştirme<a class="headerlink" href="#enriching-exceptions-with-notes" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Yükseltilmek üzere bir istisna oluşturulduğunda, genellikle meydana gelen hatayı açıklayan bilgilerle başlatılır. İstisna yakalandıktan sonra bilgi eklemenin yararlı olduğu durumlar vardır. Bu amaçla, istisnaların bir dizgiyi kabul eden ve onu istisnanın notlar listesine ekleyen <code class="docutils literal notranslate"><span class="pre">add_note(note)</span></code> metodu vardır. Standart geri işleme (traceback) oluşturma, tüm notları istisnadan sonra eklendikleri sırayla içerir.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;bad type&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -632,9 +582,7 @@ includes all notes, in the order they were added, after the exception.</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>For example, when collecting exceptions into an exception group, we may want
-to add context information for the individual errors. In the following each
-exception in the group has a note indicating when this error has occurred.</p>
+<p>Örneğin, istisnaları bir istisna grubuna toplarken, bireysel hatalar için bağlam bilgisi eklemek isteyebiliriz. Aşağıda, gruptaki her özel durum, bu hatanın ne zaman oluştuğunu gösteren bir nota sahiptir.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;operation failed&#39;</span><span class="p">)</span>
 <span class="gp">...</span>
@@ -689,13 +637,13 @@ exception in the group has a note indicating when this error has occurred.</p>
 <li><a class="reference internal" href="#syntax-errors">8.1. Söz Dizimi Hataları</a></li>
 <li><a class="reference internal" href="#exceptions">8.2. Özel Durumlar</a></li>
 <li><a class="reference internal" href="#handling-exceptions">8.3. Özel Durumları İşleme</a></li>
-<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Ortaya Çıkartma</a></li>
+<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Yükseltme</a></li>
 <li><a class="reference internal" href="#exception-chaining">8.5. İstisna Zincirleme</a></li>
 <li><a class="reference internal" href="#user-defined-exceptions">8.6. Kullanıcı Tanımlı İstisnalar</a></li>
 <li><a class="reference internal" href="#defining-clean-up-actions">8.7. Temizleme Eylemlerini Tanımlama</a></li>
 <li><a class="reference internal" href="#predefined-clean-up-actions">8.8. Önceden Tanımlanmış Temizleme Eylemleri</a></li>
-<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Raising and Handling Multiple Unrelated Exceptions</a></li>
-<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. Enriching Exceptions with Notes</a></li>
+<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Birden Fazla Alakasız İstisna Oluşturma ve İşleme</a></li>
+<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. İstisnaları Notlarla Zenginleştirme</a></li>
 </ul>
 </li>
 </ul>

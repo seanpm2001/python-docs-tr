@@ -341,7 +341,7 @@ or
 <li><p>Çoğu Linux dağıtımı Python’u sistemin standart bir parçası olarak içerir, bu nedenle <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> genellikle Linux’ta <code class="file docutils literal notranslate"><span class="pre">/usr</span></code> ‘dır. Python’u Linux’ta (veya herhangi bir Unix benzeri sistemde) kendiniz kurarsanız, varsayılan <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> <code class="file docutils literal notranslate"><span class="pre">/usr/local</span></code> şeklindedir.</p></li>
 <li><p>Windows’ta varsayılan kurulum dizini Python 1.6a1, 1.5.2 ve önceki sürümlerde <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python</span></code> idi.</p></li>
 </ol>
-<p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> Python’un kurulu olduğu dizinleri ve çalışma zamanında kitaplıklarını nerede bulduğunu gösterir. Windows altında her zaman aynıdırlar ve çoğu zaman Unix ve macOS altında aynıdırlar. Python kurulumunuzun <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> için ne kullandığını Python’u etkileşimli modda çalıştırarak ve birkaç basit komut yazarak öğrenebilirsiniz. Unix altında, kabuk istemine <code class="docutils literal notranslate"><span class="pre">python</span></code> yazmanız yeterlidir. Windows altında, <span class="menuselection">Başlat ‣ Programlar ‣ Python X.Y ‣ Python (komut satırı)</span> öğesini seçin. Yorumlayıcı başlatıldığında, komut istemine Python kodunu yazarsınız. Örneğin, Linux sistemimde, <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> i bulmak için aşağıda gösterilen üç Python ifadesini yazıyorum ve gösterildiği gibi çıktı alıyorum:</p>
+<p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> Python’un kurulu olduğu dizinleri ve çalışma zamanında kütüphanelerini nerede bulduğunu gösterir. Windows altında her zaman aynıdırlar ve çoğu zaman Unix ve macOS altında aynıdırlar. Python kurulumunuzun <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> için ne kullandığını Python’u etkileşimli modda çalıştırarak ve birkaç basit komut yazarak öğrenebilirsiniz. Unix altında, kabuk istemine <code class="docutils literal notranslate"><span class="pre">python</span></code> yazmanız yeterlidir. Windows altında, <span class="menuselection">Başlat ‣ Programlar ‣ Python X.Y ‣ Python (komut satırı)</span> öğesini seçin. Yorumlayıcı başlatıldığında, komut istemine Python kodunu yazarsınız. Örneğin, Linux sistemimde, <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> i bulmak için aşağıda gösterilen üç Python ifadesini yazıyorum ve gösterildiği gibi çıktı alıyorum:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go">Python 2.4 (#26, Aug  7 2004, 17:19:02)</span>
 <span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
@@ -419,7 +419,7 @@ or
 </tbody>
 </table>
 <p>Aşağıda açıklanan diğerlerine kıyasla bu şemayı kullanmanın avantajı, normal koşullar altında kullanıcı site paketleri dizininin her zaman <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> (daha fazla bilgi için <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> bölümüne bakın) içinde bulunmasıdır. bu, kurulumu tamamlamak için <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> betiğini çalıştırdıktan sonra gerçekleştirilecek ek bir adım olmadığı anlamına gelir.</p>
-<p><strong class="command">build_ext</strong> komutu ayrıca başlık dosyaları ve <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/lib</span></code> için derleyici arama yoluna <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/include</span></code> eklemek için bir <code class="docutils literal notranslate"><span class="pre">--user</span></code> seçeneğine sahiptir. kitaplıklar için derleyici arama yolunun yanı sıra paylaşılan C kitaplıkları (rpath) için çalışma zamanı arama yoluna.</p>
+<p><strong class="command">build_ext</strong> komutu ayrıca başlık dosyaları ve <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/lib</span></code> için derleyici arama yoluna <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/include</span></code> eklemek için bir <code class="docutils literal notranslate"><span class="pre">--user</span></code> seçeneğine sahiptir. kütüphaneler için derleyici arama yolunun yanı sıra paylaşılan C kütüphaneleri (rpath) için çalışma zamanı arama yoluna.</p>
 </section>
 <section id="alternate-installation-the-home-scheme">
 <span id="inst-alt-install-home"></span><h3>Alternatif kurulum: ev şeması<a class="headerlink" href="#alternate-installation-the-home-scheme" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
@@ -472,7 +472,7 @@ or
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/local/bin/python setup.py install --prefix=/mnt/@server/export
 </pre></div>
 </div>
-<p>Her iki durumda da, <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> seçeneği kurulum tabanını tanımlar ve <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> seçeneği platforma özel dosyalar için kullanılan platforma özel kurulum tabanını tanımlar. . (Şu anda, bu yalnızca saf olmayan modül dağıtımları anlamına gelir, ancak C kitaplıklarına, ikili yürütülebilir dosyalara vb. genişletilebilir.) <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> sağlanmazsa, varsayılan olarak <code class="xref std std-option docutils literal notranslate"> <span class="pre">--prefix</span></code>. Dosyalar aşağıdaki gibi yüklenir:</p>
+<p>Her iki durumda da, <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> seçeneği kurulum tabanını tanımlar ve <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> seçeneği platforma özel dosyalar için kullanılan platforma özel kurulum tabanını tanımlar. . (Şu anda, bu yalnızca saf olmayan modül dağıtımları anlamına gelir, ancak C kütüphanelerine, ikili yürütülebilir dosyalara vb. genişletilebilir.) <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> sağlanmazsa, varsayılan olarak <code class="xref std std-option docutils literal notranslate"> <span class="pre">--prefix</span></code>. Dosyalar aşağıdaki gibi yüklenir:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 23%" />
@@ -598,7 +598,7 @@ or
                         --install-data=python/data
 </pre></div>
 </div>
-<p>Veya eşdeğer olarak,</p>
+<p>Veya eş değer olarak,</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=~/python \
                         --install-purelib=lib \
                         --install-platlib=&#39;lib.$PLAT&#39; \
@@ -616,7 +616,7 @@ or
 <span class="na">install-data</span><span class="o">=</span><span class="s">python/data</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Veya eşdeğer olarak,</p>
+<p>Veya eş değer olarak,</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[install]</span><span class="w"></span>
 <span class="na">install-base</span><span class="o">=</span><span class="s">$HOME/python</span><span class="w"></span>
 <span class="na">install-purelib</span><span class="o">=</span><span class="s">lib</span><span class="w"></span>
@@ -625,7 +625,7 @@ or
 <span class="na">install-data</span><span class="o">=</span><span class="s">data</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Kurulum komut dosyasını çalıştırırken farklı bir kurulum temel dizini sağlarsanız, bu ikisinin eşdeğer <em>değil</em> olduğunu unutmayın. Örneğin,</p>
+<p>Kurulum komut dosyasını çalıştırırken farklı bir kurulum temel dizini sağlarsanız, bu ikisinin eş değer <em>değil</em> olduğunu unutmayın. Örneğin,</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --install-base=/tmp
 </pre></div>
 </div>
@@ -787,7 +787,7 @@ passing the <code class="docutils literal notranslate"><span class="pre">--no-us
 <li><p><em>library</em> is anything ending in <code class="file docutils literal notranslate"><span class="pre">.a</span></code> or beginning with <code class="xref std std-option docutils literal notranslate"><span class="pre">-l</span></code> or
 <code class="xref std std-option docutils literal notranslate"><span class="pre">-L</span></code>.</p></li>
 </ul>
-<p>Belirli bir platform, platformunuzda özel bir kitaplık gerektiriyorsa, bunu <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyasını düzenleyerek ve <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code> çalıştırarak ekleyebilirsiniz. Örneğin, modül :: satırı ile tanımlanırsa</p>
+<p>Belirli bir platform, platformunuzda özel bir kütüphane gerektiriyorsa, bunu <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyasını düzenleyerek ve <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code> çalıştırarak ekleyebilirsiniz. Örneğin, modül :: satırı ile tanımlanırsa</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>foo foomodule.c
 </pre></div>
 </div>
@@ -810,9 +810,9 @@ passing the <code class="docutils literal notranslate"><span class="pre">--no-us
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coff2omf python25.lib python25_bcpp.lib
 </pre></div>
 </div>
-<p><code class="file docutils literal notranslate"><span class="pre">coff2omf</span></code> programı Borland derleyicisiyle birlikte gelir. <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> dosyası, Python kurulumunuzun <code class="file docutils literal notranslate"><span class="pre">Libs</span></code> dizinindedir. Uzantınız başka kitaplıklar (zlib, …) kullanıyorsa, onları da dönüştürmeniz gerekir.</p>
-<p>Dönüştürülen dosyalar, normal kitaplıklarla aynı dizinlerde bulunmalıdır.</p>
-<p>Distutils, bu kitaplıkları değişen adlarıyla kullanmayı nasıl başarıyor? Uzantının bir kitaplığa ihtiyacı varsa (örn. <code class="file docutils literal notranslate"><span class="pre">foo</span></code>) Distutils önce <code class="file docutils literal notranslate"><span class="pre">_bcpp</span></code> (örn. <code class="file docutils literal notranslate"><span class="pre">foo_bcpp.lib</span></code>) sonekine sahip bir kitaplık bulup bulmadığını kontrol eder ve ardından bu kitaplığı kullanır. Böyle özel bir kitaplık bulamazsa, varsayılan adı kullanır (<code class="file docutils literal notranslate"><span class="pre">foo.lib</span></code>.) <a class="footnote-reference brackets" href="#id4" id="id1">1</a></p>
+<p><code class="file docutils literal notranslate"><span class="pre">coff2omf</span></code> programı Borland derleyicisiyle birlikte gelir. <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> dosyası, Python kurulumunuzun <code class="file docutils literal notranslate"><span class="pre">Libs</span></code> dizinindedir. Uzantınız başka kütüphaneler (zlib, …) kullanıyorsa, onları da dönüştürmeniz gerekir.</p>
+<p>Dönüştürülen dosyalar, normal kütüphanelerle aynı dizinlerde bulunmalıdır.</p>
+<p>Distutils, bu kütüphaneleri değişen adlarıyla kullanmayı nasıl başarıyor? Uzantının bir kitaplığa ihtiyacı varsa (örn. <code class="file docutils literal notranslate"><span class="pre">foo</span></code>) Distutils önce <code class="file docutils literal notranslate"><span class="pre">_bcpp</span></code> (örn. <code class="file docutils literal notranslate"><span class="pre">foo_bcpp.lib</span></code>) sonekine sahip bir kütüphane bulup bulmadığını kontrol eder ve ardından bu kitaplığı kullanır. Böyle özel bir kütüphane bulamazsa, varsayılan adı kullanır (<code class="file docutils literal notranslate"><span class="pre">foo.lib</span></code>.) <a class="footnote-reference brackets" href="#id4" id="id1">1</a></p>
 <p>Distutils’in uzantınızı Borland C++ ile derlemesine izin vermek için şimdi şunu yazmanız gerekir:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --compiler=bcpp
 </pre></div>
@@ -853,19 +853,19 @@ passing the <code class="docutils literal notranslate"><span class="pre">--no-us
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/cygwin/bin/dlltool --dllname python25.dll --def python25.def --output-lib libpython25.a
 </pre></div>
 </div>
-<p>Ortaya çıkan kitaplık, <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> ile aynı dizine yerleştirilmelidir. (Python kurulum dizininizin altındaki <code class="file docutils literal notranslate"><span class="pre">libs</span></code> dizini olmalıdır.)</p>
-<p>Uzantınız başka kitaplıklar (zlib,…) kullanıyorsa, onları da dönüştürmeniz gerekebilir. Dönüştürülen dosyalar, normal kitaplıkların yaptığı gibi aynı dizinlerde bulunmalıdır.</p>
+<p>Ortaya çıkan kütüphane, <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> ile aynı dizine yerleştirilmelidir. (Python kurulum dizininizin altındaki <code class="file docutils literal notranslate"><span class="pre">libs</span></code> dizini olmalıdır.)</p>
+<p>Uzantınız başka kütüphaneler (zlib,…) kullanıyorsa, onları da dönüştürmeniz gerekebilir. Dönüştürülen dosyalar, normal kütüphanelerde olduğu gibi aynı dizinlerde bulunmalıdır.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Ayrıca bakınız</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://old.zope.dev/Members/als/tips/win32_mingw_modules">Building Python modules on MS Windows platform with MinGW</a></dt><dd><p>MinGW ortamı için gerekli kitaplıkları oluşturmaya ilişkin bilgiler.</p>
+<dt><a class="reference external" href="https://old.zope.dev/Members/als/tips/win32_mingw_modules">Building Python modules on MS Windows platform with MinGW</a></dt><dd><p>MinGW ortamı için gerekli kütüphaneleri oluşturmaya ilişkin bilgiler.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Dipnotlar</p>
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Bu aynı zamanda mevcut tüm COFF kitaplıklarını aynı adı taşıyan OMF kitaplıklarıyla değiştirebileceğiniz anlamına gelir.</p>
+<dd><p>Bu aynı zamanda mevcut tüm COFF-kütüphanelerini aynı adı taşıyan OMF-kütüphaneleriyle değiştirebileceğiniz anlamına gelir.</p>
 </dd>
 <dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Daha fazla bilgi için <a class="reference external" href="https://www.sourceware.org/cygwin/">https://www.sourceware.org/cygwin/</a> adresini kontrol edin.</p>
