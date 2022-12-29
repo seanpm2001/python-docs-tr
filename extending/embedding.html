@@ -400,7 +400,7 @@
 <section id="compiling-and-linking-under-unix-like-systems">
 <span id="compiling"></span><h2><span class="section-number">1.6. </span>Unix benzeri sistemler altında Derleme ve Bağlama<a class="headerlink" href="#compiling-and-linking-under-unix-like-systems" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Python yorumlayıcısını uygulamanıza gömmek için derleyicinize (ve bağlayıcınıza) iletilecek doğru bayrakları bulmak mutlaka önemli değildir, özellikle Python’un C dinamik uzantıları buna karşı bağlatılı olan (<code class="file docutils literal notranslate"><span class="pre">.so</span></code>  dosyaları) olarak uygulanan kütüphane modüllerini yüklemesi gerektiğinden.</p>
-<p>Gerekli derleyici ve bağlayıcı bayraklarını bulmak için, yükleme işleminin bir parçası olarak oluşturulan <code class="file docutils literal notranslate"><span class="pre">python</span><em><span class="pre">XY</span></em><span class="pre">-config</span></code> betiğini çalıştırabilirsiniz (bir <code class="file docutils literal notranslate"><span class="pre">python3-config</span></code> betiği de mevcut olabilir). Bu komut dosyası, size doğrudan yardımcı olacak birkaç seçeneğe sahiptir:</p>
+<p>Gerekli derleyici ve bağlayıcı bayraklarını bulmak için, yükleme işleminin bir parçası olarak oluşturulan <code class="file docutils literal notranslate"><span class="pre">python</span><em><span class="pre">X.Y</span></em><span class="pre">-config</span></code> betiğini çalıştırabilirsiniz (bir <code class="file docutils literal notranslate"><span class="pre">python3-config</span></code> betiği de mevcut olabilir). Bu komut dosyası, size doğrudan yardımcı olacak birkaç seçeneğe sahiptir:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">pythonX.Y-config</span> <span class="pre">--cflags</span></code> derleme sırasında size önerilen bayrakları verecektir:</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/opt/bin/python3.11-config --cflags
@@ -408,8 +408,7 @@
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pythonX.Y-config</span> <span class="pre">--ldflags</span> <span class="pre">--embed</span></code> will give you the recommended flags
-when linking:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">pythonX.Y-config</span> <span class="pre">--ldflags</span> <span class="pre">--embed</span></code>, bağlantı kurarken size önerilen bayrakları verecektir:</p>
 <div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/opt/bin/python3.11-config --ldflags --embed
 <span class="go">-L/opt/lib/python3.11/config-3.11-x86_64-linux-gnu -L/opt/lib -lpython3.11 -lpthread -ldl  -lutil -lm</span>
 </pre></div>
@@ -540,7 +539,7 @@ when linking:</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 28, 2022.
+    Son güncelleme: Ara 29, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

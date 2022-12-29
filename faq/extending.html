@@ -226,14 +226,8 @@
 <section id="writing-c-is-hard-are-there-any-alternatives">
 <span id="c-wrapper-software"></span><h2><a class="toc-backref" href="#id5">C yazmak zor; başka alternatifler var mı?</a><a class="headerlink" href="#writing-c-is-hard-are-there-any-alternatives" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Ne yapmaya çalıştığınıza bağlı olarak, kendi C uzantılarınızı yazmanın bir dizi alternatifi vardır.</p>
-<p><a class="reference external" href="https://cython.org">Cython</a> and its relative <a class="reference external" href="https://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> are compilers
-that accept a slightly modified form of Python and generate the corresponding
-C code.  Cython and Pyrex make it possible to write an extension without having
-to learn Python’s C API.</p>
-<p>If you need to interface to some C or C++ library for which no Python extension
-currently exists, you can try wrapping the library’s data types and functions
-with a tool such as <a class="reference external" href="https://www.swig.org">SWIG</a>.  <a class="reference external" href="https://riverbankcomputing.com/software/sip/intro">SIP</a>, <a class="reference external" href="https://cxx.sourceforge.net/">CXX</a> <a class="reference external" href="https://www.boost.org/libs/python/doc/index.html">Boost</a>, or <a class="reference external" href="https://github.com/scipy/weave">Weave</a> are also
-alternatives for wrapping C++ libraries.</p>
+<p><a class="reference external" href="http://cython.org">Cython</a> ve akrabası <a class="reference external" href="https://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> Python’un biraz değiştirilmiş bir formunu kabul eden ve karşılık gelen C kodunu üreten derleyicilerdir.  Cython ve Pyrex, Python’un C API’ını öğrenmek zorunda kalmadan bir uzantı yazmayı mümkün kılar.</p>
+<p>Şu anda Python uzantısı bulunmayan bir C veya C++ kütüphanesine arayüz oluşturmanız gerekiyorsa, kütüphanenin veri türlerini ve işlevlerini <a class="reference external" href="http://www.swig.org">SWIG</a> gibi bir araçla sarmalamayı deneyebilirsiniz. <a class="reference external" href="https://riverbankcomputing.com/software/sip/intro">SIP</a>, <a class="reference external" href="http://cxx.sourceforge.net/">CXX</a> <a class="reference external" href="http://www.boost.org/libs/python/doc/index.html">Boost</a>, veya <a class="reference external" href="https://github.com/scipy/weave">Weave</a> de C++ kütüphanelerini sarmalamak için alternatiflerdir.</p>
 </section>
 <section id="how-can-i-execute-arbitrary-python-statements-from-c">
 <h2><a class="toc-backref" href="#id6">C’den rastgele Python komutlarını nasıl çalıştırabilirim?</a><a class="headerlink" href="#how-can-i-execute-arbitrary-python-statements-from-c" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
@@ -364,9 +358,7 @@ alternatives for wrapping C++ libraries.</p>
 <section id="can-i-create-an-object-class-with-some-methods-implemented-in-c-and-others-in-python-e-g-through-inheritance">
 <h2><a class="toc-backref" href="#id19">Bazı yöntemleri C’de, bazı yöntemleri Python’da (örneğin miras yoluyla) uygulanan bir nesne sınıfı oluşturabilir miyim?</a><a class="headerlink" href="#can-i-create-an-object-class-with-some-methods-implemented-in-c-and-others-in-python-e-g-through-inheritance" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Evet, <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, vb. gibi yerleşik sınıflardan miras alabilirsiniz.</p>
-<p>The Boost Python Library (BPL, <a class="reference external" href="https://www.boost.org/libs/python/doc/index.html">https://www.boost.org/libs/python/doc/index.html</a>)
-provides a way of doing this from C++ (i.e. you can inherit from an extension
-class written in C++ using the BPL).</p>
+<p>Boost Python Kütüphanesi (BPL, <a class="reference external" href="http://www.boost.org/libs/python/doc/index.html">http://www.boost.org/libs/python/doc/index.html</a>) bunu C++’dan yapmanın bir yolunu sağlar (yani BPL’yi kullanarak C++’da yazılmış bir uzantı sınıfından miras alabilirsiniz).</p>
 </section>
 </section>
 
@@ -490,7 +482,7 @@ class written in C++ using the BPL).</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 28, 2022.
+    Son güncelleme: Ara 29, 2022.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
