@@ -389,7 +389,7 @@ the body of a function.</p>
 <p>results in an <code class="xref py py-exc docutils literal notranslate"><span class="pre">UnboundLocalError</span></code>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">()</span>
 <span class="gt">Traceback (most recent call last):</span>
-  <span class="c">...</span>
+<span class="w">  </span><span class="c">...</span>
 <span class="gr">UnboundLocalError</span>: <span class="n">local variable &#39;x&#39; referenced before assignment</span>
 </pre></div>
 </div>
@@ -1439,7 +1439,7 @@ a <code class="docutils literal notranslate"><span class="pre">list</span></code
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="gt">Traceback (most recent call last):</span>
-   <span class="c">...</span>
+<span class="w">   </span><span class="c">...</span>
 <span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
 </pre></div>
 </div>
@@ -1453,7 +1453,7 @@ approximately this:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
 <span class="gt">Traceback (most recent call last):</span>
-  <span class="c">...</span>
+<span class="w">  </span><span class="c">...</span>
 <span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
 </pre></div>
 </div>
@@ -1463,7 +1463,7 @@ tuple is immutable.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">],</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>
 <span class="gt">Traceback (most recent call last):</span>
-  <span class="c">...</span>
+<span class="w">  </span><span class="c">...</span>
 <span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
 </pre></div>
 </div>
@@ -1499,7 +1499,7 @@ was previously pointing to, but the assignment still happens.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="fm">__iadd__</span><span class="p">([</span><span class="s1">&#39;item&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
 <span class="gt">Traceback (most recent call last):</span>
-  <span class="c">...</span>
+<span class="w">  </span><span class="c">...</span>
 <span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
 </pre></div>
 </div>
@@ -1755,10 +1755,10 @@ hierarchy) per module, this supplies the desired encapsulation.</p>
 <p>This answer actually applies to all methods, but the question usually comes up
 first in the context of constructors.</p>
 <p>In C++ you’d write</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">class</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">C</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No arguments</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">C</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Argument is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">class</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">C</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No arguments</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">C</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Argument is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>In Python you have to write a single constructor that catches all cases using
@@ -2297,7 +2297,7 @@ class objects:</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -2311,7 +2311,7 @@ class objects:</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

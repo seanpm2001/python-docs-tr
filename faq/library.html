@@ -302,7 +302,7 @@ program fails; or there’s no env program at all.  In that case, you can try th
 following hack (due to Alex Rezinsky):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
 <span class="s2">&quot;&quot;&quot;:&quot;</span>
-<span class="nb">exec</span> python <span class="nv">$0</span> <span class="si">${</span><span class="nv">1</span><span class="p">+</span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="si">}</span>
+<span class="nb">exec</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="si">${</span><span class="nv">1</span><span class="p">+</span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="si">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
@@ -949,7 +949,7 @@ multiple random number generators.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -963,7 +963,7 @@ multiple random number generators.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

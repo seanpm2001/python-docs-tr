@@ -198,10 +198,10 @@ However, when the pickle file that you want to examine comes from an
 untrusted source, <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">pickletools</span></code> is a safer option because it does
 not execute pickle bytecode.</p>
 <p>For example, with a tuple <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2)</span></code> pickled in file <code class="docutils literal notranslate"><span class="pre">x.pickle</span></code>:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python -m pickle x.pickle
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pickle<span class="w"> </span>x.pickle
 <span class="gp gp-VirtualEnv">(1, 2)</span>
 
-<span class="gp">$ </span>python -m pickletools x.pickle
+<span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pickletools<span class="w"> </span>x.pickle
 <span class="go">    0: \x80 PROTO      3</span>
 <span class="go">    2: K    BININT1    1</span>
 <span class="go">    4: K    BININT1    2</span>
@@ -383,7 +383,7 @@ requires less storage space, and unpickles more efficiently.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -397,7 +397,7 @@ requires less storage space, and unpickles more efficiently.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

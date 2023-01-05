@@ -798,7 +798,7 @@ automatically adds a <code class="docutils literal notranslate"><span class="pre
 this option on the command line, it expands your <code class="docutils literal notranslate"><span class="pre">version</span></code> string (by
 replacing <code class="docutils literal notranslate"><span class="pre">%prog</span></code>), prints it to stdout, and exits.</p>
 <p>For example, if your script is called <code class="docutils literal notranslate"><span class="pre">/usr/bin/foo</span></code>:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo --version
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo<span class="w"> </span>--version
 <span class="go">foo 1.0</span>
 </pre></div>
 </div>
@@ -846,14 +846,14 @@ program’s usage message and an error message to standard error and exits with
 error status 2.</p>
 <p>Consider the first example above, where the user passes <code class="docutils literal notranslate"><span class="pre">4x</span></code> to an option
 that takes an integer:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo -n 4x
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo<span class="w"> </span>-n<span class="w"> </span>4x
 <span class="go">Usage: foo [options]</span>
 
 <span class="go">foo: error: option -n: invalid integer value: &#39;4x&#39;</span>
 </pre></div>
 </div>
 <p>Or, where the user fails to pass a value at all:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo -n
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>/usr/bin/foo<span class="w"> </span>-n
 <span class="go">Usage: foo [options]</span>
 
 <span class="go">foo: error: -n option requires an argument</span>
@@ -2173,7 +2173,7 @@ getting it right when it’s needed.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -2187,7 +2187,7 @@ getting it right when it’s needed.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

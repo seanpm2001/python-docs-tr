@@ -286,7 +286,7 @@ In global scope: global spam
 <p>Sınıf nesneleri iki tür işlemi destekler: nitelik referansları ve örnekleme.</p>
 <p><em>Nitelik referansları</em>, Python’daki tüm nitelik referansları için kullanılan standart söz dizimi olan <code class="docutils literal notranslate"><span class="pre">obj.name</span></code> kullanır.  Geçerli nitelik adları, sınıf nesnesi oluşturulduğunda sınıfın ad alanında bulunan tüm adlardır.  Yani, sınıf tanımı şöyle görünüyorsa:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;A simple example class&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A simple example class&quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -580,13 +580,13 @@ In global scope: global spam
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-    <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <span class="gr">StopIteration</span>
 </pre></div>
 </div>
 <p>Yineleme protokolünün arkasındaki mekaniği gördükten sonra, sınıflarınıza yineleme davranışı eklemek kolaydır.  <a class="reference internal" href="../library/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> metodu ile bir nesne döndüren <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> metodunu tanımlayın.  Sınıf  <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code> tanımlarsa, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code>  sadece  <code class="docutils literal notranslate"><span class="pre">self</span></code> döndürebilir:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Reverse</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Iterator for looping over a sequence backwards.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Iterator for looping over a sequence backwards.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -777,7 +777,7 @@ In global scope: global spam
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -791,7 +791,7 @@ In global scope: global spam
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

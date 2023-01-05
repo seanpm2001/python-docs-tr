@@ -186,7 +186,7 @@
 <h2>The <em>tp_call</em> Protocol<a class="headerlink" href="#the-tp-call-protocol" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Instances of classes that set <a class="reference internal" href="typeobj.html#c.PyTypeObject.tp_call" title="PyTypeObject.tp_call"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_call</span></code></a> are callable.
 The signature of the slot is:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">tp_call</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">callable</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">kwargs</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">tp_call</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">callable</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">kwargs</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>A call is made using a tuple for the positional arguments
@@ -309,7 +309,7 @@ if needed.</p>
 <dd><p>Given a vectorcall <em>nargsf</em> argument, return the actual number of
 arguments.
 Currently equivalent to:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Py_ssize_t</span><span class="p">)(</span><span class="n">nargsf</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span><span class="n">PY_VECTORCALL_ARGUMENTS_OFFSET</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Py_ssize_t</span><span class="p">)(</span><span class="n">nargsf</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span><span class="n">PY_VECTORCALL_ARGUMENTS_OFFSET</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>However, the function <code class="docutils literal notranslate"><span class="pre">PyVectorcall_NARGS</span></code> should be used to allow
@@ -731,7 +731,7 @@ and <code class="docutils literal notranslate"><span class="pre">0</span></code>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -745,7 +745,7 @@ and <code class="docutils literal notranslate"><span class="pre">0</span></code>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

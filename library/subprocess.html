@@ -271,7 +271,7 @@ or bytes to bytes on POSIX platforms much like <a class="reference internal" hre
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;exit 1&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
-  <span class="c">...</span>
+<span class="w">  </span><span class="c">...</span>
 <span class="gr">subprocess.CalledProcessError</span>: <span class="n">Command &#39;exit 1&#39; returned non-zero exit status 1</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="s2">&quot;/dev/null&quot;</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1483,7 +1483,7 @@ return code. The output is still available as the
 been imported from the <a class="reference internal" href="#module-subprocess" title="subprocess: Subprocess management."><code class="xref py py-mod docutils literal notranslate"><span class="pre">subprocess</span></code></a> module.</p>
 <section id="replacing-bin-sh-shell-command-substitution">
 <h3>Replacing <strong class="program">/bin/sh</strong> shell command substitution<a class="headerlink" href="#replacing-bin-sh-shell-command-substitution" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>mycmd myarg<span class="k">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>mycmd<span class="w"> </span>myarg<span class="k">)</span>
 </pre></div>
 </div>
 <p>becomes:</p>
@@ -1493,7 +1493,7 @@ been imported from the <a class="reference internal" href="#module-subprocess" t
 </section>
 <section id="replacing-shell-pipeline">
 <h3>Replacing shell pipeline<a class="headerlink" href="#replacing-shell-pipeline" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>dmesg <span class="p">|</span> grep hda<span class="k">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>hda<span class="k">)</span>
 </pre></div>
 </div>
 <p>becomes:</p>
@@ -1507,7 +1507,7 @@ been imported from the <a class="reference internal" href="#module-subprocess" t
 p1 to receive a SIGPIPE if p2 exits before p1.</p>
 <p>Alternatively, for trusted input, the shell’s own pipeline support may still
 be used directly:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>dmesg <span class="p">|</span> grep hda<span class="k">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>hda<span class="k">)</span>
 </pre></div>
 </div>
 <p>becomes:</p>
@@ -1889,7 +1889,7 @@ code.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -1903,7 +1903,7 @@ code.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

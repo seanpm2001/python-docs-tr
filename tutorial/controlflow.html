@@ -375,7 +375,7 @@
             <span class="k">return</span> <span class="s2">&quot;Not found&quot;</span>
         <span class="k">case</span> <span class="mi">418</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span>
-        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;Something&#39;s wrong with the internet&quot;</span>
 </pre></div>
 </div>
@@ -396,7 +396,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">case</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, Y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -416,7 +416,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">case</span> <span class="n">Point</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Somewhere else&quot;</span><span class="p">)</span>
-        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not a point&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -438,7 +438,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Single point </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">case</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y2</span><span class="p">)]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two on the Y axis at </span><span class="si">{</span><span class="n">y1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something else&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -488,7 +488,7 @@
 <span id="tut-functions"></span><h2><span class="section-number">4.7. </span>Fonksiyonların Tanımlanması<a class="headerlink" href="#defining-functions" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Fibonacci serisini rastgele bir sınıra kadar yazan bir fonksiyon oluşturabiliriz:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    <span class="c1"># write Fibonacci series up to n</span>
-<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 <span class="gp">... </span>    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
 <span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
@@ -520,7 +520,7 @@
 </div>
 <p>Fibonacci serisindeki sayıların listesini döndürebilecek bir fonksiyon yazmak gayet basittir, onun yerine şunu yazdırarak:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># return Fibonacci series up to n</span>
-<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return a list containing the Fibonacci series up to n.&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a list containing the Fibonacci series up to n.&quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 <span class="gp">... </span>    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
@@ -863,8 +863,8 @@ sketch : Cheese Shop Sketch
 <p>Python ayrıştırıcısı, Python’daki çok satırlı dize değişmezlerinden girintiyi çıkarmaz, bu nedenle belgeleri işleyen araçların istenirse girintiyi çıkarması gerekir.  Bu, aşağıdaki kural kullanılarak yapılır. Dizenin ilk satırından <em>sonraki</em> boş olmayan ilk satır, tüm dokümantasyon dizesi için girinti miktarını belirler.  (İlk satırı kullanamayız, çünkü genellikle dizenin açılış tırnaklarına bitişiktir, bu nedenle girintisi dize değişmezinde belirgin değildir)  Bu girintiye “eş değer” boşluk daha sonra dizenin tüm satırlarının başlangıcından çıkarılır.  Daha az girintili satırlar oluşmamalıdır, ancak oluşurlarsa başlarındaki tüm boşluklar çıkarılmalıdır.  Beyaz boşlukların eş değerliği sekmelerin genişletilmesinden sonra test edilmelidir (normalde 8 boşluğa kadar).</p>
 <p>İşte çok satırlı bir docstring örneği:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
-<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Do nothing, but document it.</span>
-<span class="gp">...</span><span class="sd"></span>
+<span class="gp">... </span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Do nothing, but document it.</span>
+<span class="gp">...</span>
 <span class="gp">... </span><span class="sd">    No, really, it doesn&#39;t do anything.</span>
 <span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="gp">... </span>    <span class="k">pass</span>
@@ -1036,7 +1036,7 @@ sketch : Cheese Shop Sketch
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -1050,7 +1050,7 @@ sketch : Cheese Shop Sketch
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

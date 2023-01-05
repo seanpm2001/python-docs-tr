@@ -225,16 +225,16 @@ normal slices.</p>
 <p>This function is considered not safe for resizable sequences.
 Its invocation should be replaced by a combination of
 <a class="reference internal" href="#c.PySlice_Unpack" title="PySlice_Unpack"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_Unpack()</span></code></a> and <a class="reference internal" href="#c.PySlice_AdjustIndices" title="PySlice_AdjustIndices"><code class="xref c c-func docutils literal notranslate"><span class="pre">PySlice_AdjustIndices()</span></code></a> where</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PySlice_GetIndicesEx</span><span class="p">(</span><span class="n">slice</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">slicelength</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PySlice_GetIndicesEx</span><span class="p">(</span><span class="n">slice</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">slicelength</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// return error</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>is replaced by</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PySlice_Unpack</span><span class="p">(</span><span class="n">slice</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PySlice_Unpack</span><span class="p">(</span><span class="n">slice</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// return error</span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">slicelength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PySlice_AdjustIndices</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span>
+<span class="n">slicelength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PySlice_AdjustIndices</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stop</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -385,7 +385,7 @@ treated just like any other object with respect to reference counts.  Like
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -399,7 +399,7 @@ treated just like any other object with respect to reference counts.  Like
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

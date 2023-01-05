@@ -332,10 +332,10 @@ these functions again each time that the file is replaced.</p>
 <h2>Example<a class="headerlink" href="#example" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Example of a segmentation fault on Linux with and without enabling the fault
 handler:</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 -c <span class="s2">&quot;import ctypes; ctypes.string_at(0)&quot;</span>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import ctypes; ctypes.string_at(0)&quot;</span>
 <span class="go">Segmentation fault</span>
 
-<span class="gp">$ </span>python3 -q -X faulthandler
+<span class="gp">$ </span>python3<span class="w"> </span>-q<span class="w"> </span>-X<span class="w"> </span>faulthandler
 <span class="go">&gt;&gt;&gt; import ctypes</span>
 <span class="go">&gt;&gt;&gt; ctypes.string_at(0)</span>
 <span class="go">Fatal Python error: Segmentation fault</span>
@@ -445,7 +445,7 @@ handler:</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -459,7 +459,7 @@ handler:</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

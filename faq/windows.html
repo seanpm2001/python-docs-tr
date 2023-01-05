@@ -354,8 +354,8 @@ into Python! (This is the second key undocumented fact.)</p>
 </li>
 <li><p>In short, you can use the following code to initialize the Python interpreter
 with your extension module.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span><span class="cp"></span>
-<span class="p">...</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+<span class="p">...</span>
 <span class="n">Py_Initialize</span><span class="p">();</span><span class="w">  </span><span class="c1">// Initialize Python.</span>
 <span class="n">initmyAppc</span><span class="p">();</span><span class="w">  </span><span class="c1">// Initialize (import) the helper class.</span>
 <span class="n">PyRun_SimpleString</span><span class="p">(</span><span class="s">&quot;import myApp&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Import the shadow class.</span>
@@ -370,15 +370,15 @@ compiler’s notion of a <code class="docutils literal notranslate"><span class=
 standpoint these are very low level functions.</p>
 <p>Problem 2: SWIG generates the following code when generating wrappers to void
 functions:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span><span class="w"></span>
-<span class="n">_resultobj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_None</span><span class="p">;</span><span class="w"></span>
-<span class="k">return</span><span class="w"> </span><span class="n">_resultobj</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span>
+<span class="n">_resultobj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_None</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">_resultobj</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Alas, Py_None is a macro that expands to a reference to a complex data
 structure called _Py_NoneStruct inside pythonNN.dll.  Again, this code will
 fail in a mult-compiler environment.  Replace such code by:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>It may be possible to use SWIG’s <code class="docutils literal notranslate"><span class="pre">%typemap</span></code> command to make the change
@@ -521,7 +521,7 @@ for guidance on manually installing the C Runtime update.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -535,7 +535,7 @@ for guidance on manually installing the C Runtime update.</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 

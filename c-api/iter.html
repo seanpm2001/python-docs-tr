@@ -193,28 +193,28 @@ along the exception.</p>
 
 <p>To write a loop which iterates over an iterator, the C code should look
 something like this:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyObject_GetIter</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w"></span>
-<span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">item</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyObject_GetIter</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">item</span><span class="p">;</span>
 
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* propagate error */</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* propagate error */</span>
+<span class="p">}</span>
 
-<span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyIter_Next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* do something with item */</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* release reference when done */</span><span class="w"></span>
-<span class="w">    </span><span class="n">Py_DECREF</span><span class="p">(</span><span class="n">item</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyIter_Next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* do something with item */</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="cm">/* release reference when done */</span>
+<span class="w">    </span><span class="n">Py_DECREF</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">iterator</span><span class="p">);</span><span class="w"></span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">iterator</span><span class="p">);</span>
 
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyErr_Occurred</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* propagate error */</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* continue doing useful work */</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyErr_Occurred</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* propagate error */</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* continue doing useful work */</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="c type">
@@ -323,7 +323,7 @@ something like this:</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2022, Python Software Foundation.
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />
@@ -337,7 +337,7 @@ something like this:</p>
 <br />
     <br />
 
-    Son güncelleme: Ara 29, 2022.
+    Son güncelleme: Oca 05, 2023.
     <a href="/bugs.html">Found a bug</a>?
     <br />
 
